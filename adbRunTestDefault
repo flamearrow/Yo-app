@@ -1,0 +1,2 @@
+echo adb shell am instrument -w com.ml.gb.yo/android.test.InstrumentationTestRunner
+adb shell am instrument -w com.ml.gb.yo/android.test.InstrumentationTestRunner
