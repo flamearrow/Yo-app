@@ -11,10 +11,13 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.ml.gb.yo.widget.YoColor;
+
 /**
- * Created by ccen on 9/28/14.
+ * Base list fragment for configuring list adaptors, itemclick listeners for all lists
  */
 public abstract class BaseList extends ListFragment {
+
     private ListView listView;
 
     @Override
@@ -25,8 +28,9 @@ public abstract class BaseList extends ListFragment {
         // initialize listView
         listView = getListView();
         listView.setOnItemClickListener(getItemClickListener());
+        getListView().setBackgroundColor(YoColor.PURPLE);
         setListAdapter(createListAdapter());
-        // without this, items won't be focusable and thus can change color
+        // without this, items won't be focusable or change color
         getListView().setItemsCanFocus(true);
     }
 

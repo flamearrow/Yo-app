@@ -5,7 +5,8 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 
 /**
- * Send yos to friends
+ * Display all friend, click on a friend to send yos to friends
+ * a plus button at bottom to add friend
  */
 public class FriendList extends BaseList {
 

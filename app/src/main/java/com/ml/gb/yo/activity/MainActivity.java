@@ -5,10 +5,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.ml.gb.yo.R;
 import com.ml.gb.yo.fragment.FriendList;
 import com.ml.gb.yo.fragment.MenuList;
+import com.ml.gb.yo.fragment.SignUpList;
+import com.ml.gb.yo.fragment.WelcomeList;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -19,10 +23,15 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new MenuList())
+                    .add(R.id.container, new WelcomeList())
                     .commit();
         }
 
+    }
+
+
+    public void shout(View view) {
+        Toast.makeText(this, "MLGB!", Toast.LENGTH_SHORT).show();
     }
 
 }
