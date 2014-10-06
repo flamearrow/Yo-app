@@ -5,6 +5,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.ml.gb.yo.R;
 import com.ml.gb.yo.fragment.FriendList;
@@ -23,6 +25,11 @@ public class MainActivity extends ActionBarActivity {
                     .commit();
         }
 
+    }
+
+
+    public void shout(View view) {
+        Toast.makeText(this, "MLGB!", Toast.LENGTH_SHORT).show();
     }
 
 }
