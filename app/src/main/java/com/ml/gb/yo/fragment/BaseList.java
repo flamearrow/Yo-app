@@ -28,7 +28,6 @@ public abstract class BaseList extends ListFragment {
         setListAdapter(createListAdapter());
         // without this, items won't be focusable and thus can change color
         getListView().setItemsCanFocus(true);
-
     }
 
     abstract ListAdapter createListAdapter();

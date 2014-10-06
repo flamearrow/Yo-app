@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,12 @@ public class MenuList extends BaseList {
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.menu_list, container, false);
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         // need to update YO's count here
@@ -39,6 +46,7 @@ public class MenuList extends BaseList {
     AdapterView.OnItemClickListener getItemClickListener() {
         return new AdapterView.OnItemClickListener() {
             Toast mToast = Toast.makeText(getActivity(), "", Toast.LENGTH_LONG);
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mToast.setText(menuItems[position]);
