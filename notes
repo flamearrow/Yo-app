@@ -1,0 +1,42 @@
+need to remove the white line between items
+change color programatically
+add action listener
+
+
+might use ColorStateList to change focus
+	for android:textColor we can use colors under /color
+	for android:backGround we need to use drawable under /drawable, need the definition is differernt from regular color, need a <shape> inside
+
+use a homemade base adaptor instead of arrayadaptor, looks like we can change the background color in getView() method
+	-but that would make the logic no generic - do we need to do the overriding in both Menulist adaptor which it only gets stuff from array, and from a cursor adaptor?
+		ideally we should be able to get the style from xml layout without any java code. but if dynamically generating random color is not doable from xml, we should use a composition to isolate the getView() logic in an item
+		or we should change the color programmatically in BaseList level
+		ListView.getChildAt() returns null for non visiable childs
+		will first just use a customized adaptor -done
+
+add a menu icon float on list
+	-done by hacking a framelayout to menulist  
+
+
+
+
+transition animation between views － use fragmentation animations - done
+
+Welcome 
+	sign in: go to FriendList -done
+	sign up: do nothing -done
+	disable goback from friendList -done
+FriendList
+	preload friends from database - need a dabata adaptor, plus button to add in database and refresh the list
+		db adaptor - need to be customized to 
+			a) round robin colors
+			b) plus + items from db
+	need a dao package to 
+			a) return list of friends for an id
+			b) return number of counts of yo's for an id
+			c) add friend to an id
+			4) add yo's count to an id
+MenuList
+	fixed list, need to get yo count from db
+
+splash
