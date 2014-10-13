@@ -3,6 +3,8 @@ change color programatically
 add action listener
 
 
+
+
 might use ColorStateList to change focus
 	for android:textColor we can use colors under /color
 	for android:backGround we need to use drawable under /drawable, need the definition is differernt from regular color, need a <shape> inside
