@@ -13,6 +13,9 @@ import com.ml.gb.yo.fragment.FriendList;
 import com.ml.gb.yo.fragment.MenuList;
 import com.ml.gb.yo.fragment.SignUpList;
 import com.ml.gb.yo.fragment.WelcomeList;
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import io.fabric.sdk.android.Fabric;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -20,6 +23,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()

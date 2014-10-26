@@ -33,12 +33,14 @@ public class WelcomeList extends BaseList {
                     case 0:
                         android.support.v4.app.FragmentTransaction
                                 transaction = getFragmentManager().beginTransaction();
-                        transaction.setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_bottom);
+                        transaction
+                                .setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_bottom);
                         transaction.replace(R.id.container, new MenuList());
                         // don't return back, go to home screen instead
-//                        transaction.addToBackStack(null);
+                        // transaction.addToBackStack(null);
                         transaction.commit();
                         break;
+                    // SIGN UP
                     case 1:
                         Toast.makeText(getActivity(), mWelcomeItems[1], Toast.LENGTH_LONG).show();
                         break;
