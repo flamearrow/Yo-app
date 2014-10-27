@@ -10,6 +10,10 @@ import android.widget.TextView;
 
 import com.ml.gb.yo.R;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * A list adaptor to display a list of String items in different background color.
  */
@@ -26,6 +30,11 @@ public class RoundRobinColorListAdaptor extends BaseAdapter {
 
     public RoundRobinColorListAdaptor(String[] items, Context context) {
         mItems = items;
+        mContext = context;
+    }
+
+    public RoundRobinColorListAdaptor(List<String> items, Context context) {
+        mItems = items.toArray(new String[0]);
         mContext = context;
     }
 

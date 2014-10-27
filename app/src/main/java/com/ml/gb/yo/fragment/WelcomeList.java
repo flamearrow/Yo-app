@@ -1,14 +1,14 @@
 package com.ml.gb.yo.fragment;
 
-import android.app.FragmentTransaction;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import com.ml.gb.yo.R;
+import com.ml.gb.yo.YoConstants;
 import com.ml.gb.yo.listAdapter.RoundRobinColorListAdaptor;
-import com.ml.gb.yo.listeners.ToastNameListener;
 
 /**
  * Prompt for signing in /signing up
@@ -35,7 +35,14 @@ public class WelcomeList extends BaseList {
                                 transaction = getFragmentManager().beginTransaction();
                         transaction
                                 .setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_bottom);
-                        transaction.replace(R.id.container, new MenuList());
+                        // TODO: handle real sign in logic
+                        // Now use fake identity
+                        BaseList friendList = new FriendList();
+                        Bundle userIdentity = new Bundle();
+                        userIdentity.putString(YoConstants.USER_NAME, "mlgb");
+                        userIdentity.putInt(YoConstants.USER_ID, 12345);
+                        friendList.setArguments(userIdentity);
+                        transaction.replace(R.id.container, friendList);
                         // don't return back, go to home screen instead
                         // transaction.addToBackStack(null);
                         transaction.commit();
