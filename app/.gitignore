@@ -1,3 +1,4 @@
 /build
 *.iml
-*crashlytics-build.properties
+crashlytics-build.properties
+/src/main/assets/crashlytics-build.properties
