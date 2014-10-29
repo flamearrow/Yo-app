@@ -1,5 +1,7 @@
 package com.ml.gb.yo.fragment;
 
+import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,5 +66,18 @@ public class FriendList extends BaseList {
     @Override
     AdapterView.OnItemClickListener getItemClickListener() {
         return new FriendListListener(this);
+    }
+
+    private class loadFriendLists extends AsyncTask<Long, Object, Cursor> {
+
+        @Override
+        protected Cursor doInBackground(Long... params) {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Cursor cursor) {
+            super.onPostExecute(cursor);
+        }
     }
 }
