@@ -9,26 +9,38 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 
 import com.ml.gb.yo.R;
+import com.ml.gb.yo.YoConstants;
 import com.ml.gb.yo.listAdapter.RoundRobinColorListAdaptor;
 import com.ml.gb.yo.listeners.ToastNameListener;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * whoami, configs, yos
  */
 public class MenuList extends BaseList {
 
-    private String[] menuItems = {"MY NAME", "FIND FRIENDS", "EDIT PROFILE", "YO'S ###", "BACK",
-            "1", "2", "3"};
+    private String mName;
 
-    @Override
-    ListAdapter createListAdapter() {
-        return new RoundRobinColorListAdaptor(menuItems, getActivity());
+    private int mYoCount;
+
+    private List<String> mMenuItems;
+
+    public MenuList(String myName, int yoCount) {
+        mName = myName;
+        mYoCount = yoCount;
+        mMenuItems = new LinkedList<String>();
+        mMenuItems.add(myName);
+        mMenuItems.add(YoConstants.FIND_FRIEND);
+        mMenuItems.add(YoConstants.EDIT_PROFILE);
+        mMenuItems.add(YoConstants.YO_COUNT + yoCount);
+        mMenuItems.add(YoConstants.BACK);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        // need to update YO's count here
+    ListAdapter createListAdapter() {
+        return new RoundRobinColorListAdaptor(mMenuItems, getActivity());
     }
 
     @Override

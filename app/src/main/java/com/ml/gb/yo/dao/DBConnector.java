@@ -13,7 +13,8 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBConnector {
 
-    public static final String DB_PREFIX = "FRIEND_";
+    // DB name
+    private static final String DB_PREFIX = "FRIEND_";
 
     private final String DB_NAME;
 
@@ -25,7 +26,7 @@ public class DBConnector {
 
     public DBConnector(Context context, long userID) {
         mId = userID;
-        DB_NAME = DB_PREFIX + userID;
+        DB_NAME = DB_PREFIX + mId;
         mDBOpenHelper = new DBOpenHelper(context, DB_NAME, null, 1);
     }
 
@@ -38,8 +39,7 @@ public class DBConnector {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            String dbName = DB_PREFIX + TEST_USER_ID;
-            String createDB = "CREATE TABLE IF NOT EXISTS " + dbName
+            String createDB = "CREATE TABLE IF NOT EXISTS " + DB_NAME
                     + " (id INTEGER primary key, name TEXT, count INTEGER);";
             db.execSQL(createDB);
         }
@@ -71,6 +71,15 @@ public class DBConnector {
 
     }
 
+    // insert some debug data to db
+    public void populateDebugData() {
+        mDb.execSQL("insert or ignore into " + DB_NAME + " values(223342, \"mlgb1\", 123);");
+        mDb.execSQL("insert or ignore into " + DB_NAME + " values(323342, \"mlgb2\", 11);");
+        mDb.execSQL("insert or ignore into " + DB_NAME + " values(423342, \"mlgb3\", 3);");
+        mDb.execSQL("insert or ignore into " + DB_NAME + " values(523342, \"mlgb4\", 5);");
+        mDb.execSQL("insert or ignore into " + DB_NAME + " values(623342, \"mlgb5\", 2);");
+    }
+
     // return how many yos the friend has sent to current user
     public int getYoCount(long friendId) {
         Cursor result = mDb
@@ -84,11 +93,12 @@ public class DBConnector {
     }
 
     // return all yos the current receives
+    // this should be useless
     public int getTotalYoCount() {
         Cursor result = mDb
                 .query(DB_NAME, new String[]{"count"}, null, null, null, null, null);
         int ret = 0;
-        while(result.moveToNext()) {
+        while (result.moveToNext()) {
             ret += result.getInt(0);
         }
         result.close();
@@ -120,9 +130,4 @@ public class DBConnector {
     public static final long TEST_USER_ID = 123456;
 
     public static final String TEST_USER_NAME = "MLGBBGLM";
-
-    public void debug_create_db() {
-        String DB_NAME = DB_PREFIX + TEST_USER_ID;
-
-    }
 }

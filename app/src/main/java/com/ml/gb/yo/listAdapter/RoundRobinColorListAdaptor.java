@@ -9,9 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.ml.gb.yo.R;
+import com.ml.gb.yo.YoConstants;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,8 +33,18 @@ public class RoundRobinColorListAdaptor extends BaseAdapter {
     }
 
     public RoundRobinColorListAdaptor(List<String> items, Context context) {
-        mItems = items.toArray(new String[0]);
+        updateItems(items);
         mContext = context;
+    }
+
+    public void updateItems(List<String> items) {
+        String[] sItems = new String[items.size()];
+        for (int i = 0; i < items.size(); i++) {
+            sItems[i] = items.get(i);
+        }
+        mItems = sItems;
+        // refresh the list
+        notifyDataSetChanged();
     }
 
     @Override

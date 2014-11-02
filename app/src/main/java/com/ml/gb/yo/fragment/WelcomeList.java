@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.ml.gb.yo.R;
 import com.ml.gb.yo.YoConstants;
+import com.ml.gb.yo.dao.DBConnector;
 import com.ml.gb.yo.listAdapter.RoundRobinColorListAdaptor;
 
 /**
@@ -39,8 +40,8 @@ public class WelcomeList extends BaseList {
                         // Now use fake identity
                         BaseList friendList = new FriendList();
                         Bundle userIdentity = new Bundle();
-                        userIdentity.putString(YoConstants.USER_NAME, "mlgb");
-                        userIdentity.putInt(YoConstants.USER_ID, 12345);
+                        userIdentity.putString(YoConstants.USER_NAME, DBConnector.TEST_USER_NAME);
+                        userIdentity.putLong(YoConstants.USER_ID, DBConnector.TEST_USER_ID);
                         friendList.setArguments(userIdentity);
                         transaction.replace(R.id.container, friendList);
                         // don't return back, go to home screen instead

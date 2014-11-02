@@ -41,7 +41,13 @@ public class FriendListListener implements AdapterView.OnItemClickListener {
         if (position == addFriendIndex) {
             Toast.makeText(mFriendList.getActivity(), "add new Friends", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(mFriendList.getActivity(), "mlgb!", Toast.LENGTH_SHORT).show();
+            long mUserId = mFriendList.getFriendsItems().get(position).getId();
+            String mUserName = mFriendList.getFriendsItems().get(position).getName();
+            int yoCount = mFriendList.getFriendsItems().get(position).getYoCount();
+            mFriendList.sendYo(mUserId);
+            Toast.makeText(mFriendList.getActivity(),
+                    "User name: " + mUserName + " User ID: " + mUserId + " Yo Count: " + yoCount,
+                    Toast.LENGTH_SHORT).show();
         }
     }
 }

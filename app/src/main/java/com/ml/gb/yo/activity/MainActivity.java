@@ -29,16 +29,4 @@ public class MainActivity extends ActionBarActivity {
         super.onBackPressed();
         overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_bottom);
     }
-
-    public void goMenu(View view) {
-            android.support.v4.app.FragmentTransaction
-                    transaction = getSupportFragmentManager().beginTransaction();
-            transaction
-                    .setCustomAnimations(R.anim.slide_in_bottom, R.anim.slide_out_up);
-            transaction.replace(R.id.container, new MenuList());
-            // don't return back, go to home screen instead
-            transaction.addToBackStack(null);
-            transaction.commit();
-    }
-
 }
