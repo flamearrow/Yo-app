@@ -96,6 +96,18 @@ public class FriendList extends BaseList {
         }
     }
 
+    private class AddFriendTask extends AsyncTask<Object, Object, Object> {
+        DBConnector dbc;
+        @Override
+        protected Object doInBackground(Object... params) {
+            Long userID = (Long) params[0];
+            Friend newFriend = (Friend) params[1];
+            dbc = new DBConnector(getActivity(), userID);
+            dbc.addFriend(newFriend);
+            return null;
+        }
+    }
+
 
     public List<Friend> getFriendsItems() {
         return mFriendsItems;
@@ -103,7 +115,7 @@ public class FriendList extends BaseList {
 
     @Override
     ListAdapter createListAdapter() {
-        return new RoundRobinColorListAdaptor(getFriendListItems(), getActivity());
+        return new RoundRobinColorListAdaptor(getFriendListItems(), getActivity(), this);
     }
 
     @Override
@@ -116,9 +128,6 @@ public class FriendList extends BaseList {
 
     }
 
-    /**
-     * Total Yo count
-     */
     private int getYoCount() {
         int ret = 0;
         for (Friend f : mFriendsItems) {
@@ -137,5 +146,18 @@ public class FriendList extends BaseList {
         }
         ret.add(YoConstants.PLUS);
         return ret;
+    }
+
+    /**
+     * Exposed for OnFocusChangedListener to add a new friend to the list
+     * @param newFriend
+     */
+    public void appendFriend(Friend newFriend) {
+        mFriendsItems.add(newFriend);
+        Object[] addFriendParams = new Object[2];
+        addFriendParams[0] = mUserId;
+        addFriendParams[1] = newFriend;
+        new AddFriendTask().execute(addFriendParams);
+        ((RoundRobinColorListAdaptor) getListAdapter()).updateItems(getFriendListItems());
     }
 }

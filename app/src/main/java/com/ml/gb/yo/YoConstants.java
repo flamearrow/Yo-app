@@ -15,4 +15,6 @@ public class YoConstants {
     public static final String YO_COUNT = "YO's ";
 
     public static final String BACK = "BACK";
+
+    public static final String EMPTY_STRING = "";
 }

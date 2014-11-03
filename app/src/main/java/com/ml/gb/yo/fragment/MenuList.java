@@ -40,7 +40,7 @@ public class MenuList extends BaseList {
 
     @Override
     ListAdapter createListAdapter() {
-        return new RoundRobinColorListAdaptor(mMenuItems, getActivity());
+        return new RoundRobinColorListAdaptor(mMenuItems, getActivity(), this);
     }
 
     @Override

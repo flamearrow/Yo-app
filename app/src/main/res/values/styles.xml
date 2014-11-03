@@ -15,4 +15,16 @@
         <item name="android:textSize">45sp</item>
         <item name="android:textColor">@color/list_item_color</item>
     </style>
+
+    <style name="baseListItemEditText">
+        <item name="android:background">@drawable/list_item_background</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">45sp</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:singleLine">true</item>
+    </style>
 </resources>

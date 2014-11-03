@@ -5,7 +5,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -37,4 +39,5 @@ public abstract class BaseList extends ListFragment {
     abstract ListAdapter createListAdapter();
 
     abstract AdapterView.OnItemClickListener getItemClickListener();
+
 }

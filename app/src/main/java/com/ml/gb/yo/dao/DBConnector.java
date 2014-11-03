@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.ml.gb.yo.pojo.Friend;
+
 /**
  * Database accessor, note DBConnector should be static for the current user
  * that said this instance should be globally available and be switched when
@@ -124,7 +126,10 @@ public class DBConnector {
         open();
         mDb.insert(DB_NAME, null, newFriend);
         close();
+    }
 
+    public void addFriend(Friend newFriend) {
+        addFriend(newFriend.getId(), newFriend.getName(), newFriend.getYoCount());
     }
 
     public static final long TEST_USER_ID = 123456;

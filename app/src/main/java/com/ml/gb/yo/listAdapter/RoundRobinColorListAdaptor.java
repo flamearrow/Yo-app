@@ -6,10 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ml.gb.yo.R;
 import com.ml.gb.yo.YoConstants;
+import com.ml.gb.yo.fragment.BaseList;
+import com.ml.gb.yo.fragment.FriendList;
+import com.ml.gb.yo.listeners.AddFriendOnFocusChangedListener;
 
 import java.util.List;
 
@@ -22,6 +26,7 @@ public class RoundRobinColorListAdaptor extends BaseAdapter {
 
     private Context mContext;
 
+    private BaseList mList;
 
     private static int[] ITEM_COLORS = {Color.BLUE, Color.CYAN, Color.MAGENTA, Color.RED,
             Color.LTGRAY};
@@ -32,9 +37,10 @@ public class RoundRobinColorListAdaptor extends BaseAdapter {
         mContext = context;
     }
 
-    public RoundRobinColorListAdaptor(List<String> items, Context context) {
+    public RoundRobinColorListAdaptor(List<String> items, Context context, BaseList list) {
         updateItems(items);
         mContext = context;
+        mList = list;
     }
 
     public void updateItems(List<String> items) {
@@ -62,14 +68,26 @@ public class RoundRobinColorListAdaptor extends BaseAdapter {
         return position;
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
+        if (mItems[position] == YoConstants.PLUS) {
+            convertView = LayoutInflater.from(mContext)
+                    .inflate(R.layout.base_list_edittext, parent, false);
+            convertView.setBackgroundColor(ITEM_COLORS[position % ITEM_COLORS.length]);
+            ((EditText) convertView).setText(mItems[position]);
+            convertView.setOnFocusChangeListener(
+                    new AddFriendOnFocusChangedListener((EditText) convertView,
+                            (FriendList) mList));
+            return convertView;
+        } else {
             convertView = LayoutInflater.from(mContext)
                     .inflate(R.layout.base_list_item, parent, false);
+            convertView.setBackgroundColor(ITEM_COLORS[position % ITEM_COLORS.length]);
+            ((TextView) convertView).setText(mItems[position]);
+            return convertView;
         }
-        convertView.setBackgroundColor(ITEM_COLORS[position % ITEM_COLORS.length]);
-        ((TextView) convertView).setText(mItems[position]);
-        return convertView;
     }
+
+
 }
